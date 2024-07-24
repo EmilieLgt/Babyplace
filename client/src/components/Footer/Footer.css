@@ -1,0 +1,153 @@
+.all_all_footer {
+  margin-bottom: 3em;
+}
+.all_all_footer a {
+  text-decoration: none;
+}
+.pink_text {
+  color: var(--second-color);
+}
+.bold_text {
+  font-weight: bold;
+}
+.all_footer {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5em;
+  margin-bottom: 2em;
+  font-size: 0.55em;
+}
+
+.all_footer img {
+  width: 2em;
+}
+
+.icon_footer {
+  margin-bottom: 0.5em;
+  display: flex;
+  align-items: center;
+}
+
+.icon_footer img {
+  margin-right: 0.5em;
+}
+
+.credits_footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.credits_footer p {
+  display: flex;
+  justify-content: center;
+  font-size: 0.5em;
+}
+
+.all_footer li {
+  list-style-type: none;
+}
+
+.image_footer {
+  display: flex;
+  gap: 1em;
+}
+
+.first_part_footer {
+  margin-right: 2em;
+}
+
+.first_part_footer li {
+  margin-bottom: 0.5em;
+}
+
+.second_part_footer {
+  margin-right: 2em;
+}
+
+.second_part_footer li {
+  margin-bottom: 0.5em;
+}
+
+.third_part_footer {
+  margin-right: 2em;
+  text-align: center;
+}
+
+.third_part_footer li {
+  margin-bottom: 0.5em;
+}
+
+.fourth_part_footer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8em;
+}
+
+.social_media_footer {
+  margin-bottom: 0.5em;
+}
+.all_footer {
+  font-size: 1em;
+}
+
+.credits_footer p {
+  font-size: 1em;
+}
+.all_footer {
+  justify-content: space-evenly;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.first_container_footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+.second_container_footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+@media screen and (max-width: 990px) {
+  .first_container_footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .all_footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .second_container_footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  .fourth_part_footer {
+    text-align: right;
+    margin-right: 2em;
+  }
+  .second_part_footer {
+    margin-right: 0;
+  }
+  .third_part_footer {
+    font-size: 0.8em;
+    padding-left: 0;
+  }
+  .all_footer {
+    margin-top: 3em;
+    margin-bottom: 0;
+  }
+  .credits_footer {
+    padding-bottom: 1em;
+  }
+}

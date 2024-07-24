@@ -1,0 +1,304 @@
+body {
+  margin: 0;
+}
+.presentation_login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.image_login {
+  width: 80%;
+}
+.buttons_register_login {
+  column-gap: 10%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons_register_login button {
+  width: 100px;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border: 3px solid #5d53b6;
+  font-weight: 600;
+  background-color: white;
+
+  border-radius: 0.7em;
+  margin-bottom: 0.5em;
+}
+
+.login_register_pro {
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight_login_pro {
+  color: #9c69e2;
+}
+
+.login_pro {
+  background-color: #7e72f2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login_pro_info p {
+  margin-top: 3em;
+  color: white;
+}
+.login_pro_info p:hover {
+  color: #5f408a;
+  font-weight: 700;
+}
+
+.register_pro {
+  background-color: #7e72f2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.login_pro_info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login_pro_info h1 {
+  color: white;
+  margin-bottom: 1em;
+  margin-top: 2em;
+}
+
+.login_pro_title h2 {
+  color: #5f408a;
+}
+
+.login_pro_info h3 {
+  color: white;
+  margin-bottom: 2em;
+}
+
+.login_pro_info button {
+  margin-top: 1em;
+  border-radius: 5em;
+  width: 10em;
+  height: 3em;
+  border: 1px;
+}
+
+.login_pro_info button:hover {
+  border: solid 3px #5f408a;
+}
+
+.login_pro_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.input_login_pro {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input_login_pro input {
+  margin: 0.5em;
+  border-radius: 1em;
+  border: solid transparent;
+  width: 20em;
+  height: 2em;
+  text-align: center;
+}
+
+.input_register_pro input {
+  margin: 0.5em;
+  width: 20em;
+  height: 2em;
+  text-align: center;
+}
+
+.login_pro_image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5em;
+  margin-bottom: 5em;
+  border-radius: 100%;
+  width: 300px;
+  height: 300px;
+  background-color: rgba(255, 255, 255, 0.219);
+}
+.login_register_image {
+  width: 200px;
+}
+.login_admin {
+  display: none;
+}
+.error_message_login {
+  background-color: rgb(245, 196, 196);
+  color: rgb(124, 18, 18);
+  padding: 0.5em 3em;
+  border-radius: 10px;
+  margin-top: 1em;
+  width: 20em;
+  text-align: center;
+}
+.register_message {
+  background-color: rgb(201, 235, 201);
+  color: green;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  text-align: center;
+  width: 90%;
+}
+
+@media screen and (min-width: 990px) {
+  .presentation_login {
+    background-image: url("/assets/images/background_login.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .presentation_login h1 {
+    color: var(--first-color);
+    font-size: 8em;
+    margin: 0;
+  }
+  .image_login {
+    width: 33%;
+  }
+  .presentation_login p {
+    font-size: 1.1em;
+  }
+  .buttons_register_login {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 4em;
+  }
+
+  .buttons_register_login button {
+    width: 300px;
+    padding: 1em;
+    font-size: 1em;
+    border: 3px solid var(--first-color);
+    border-radius: 50px;
+    background-color: white;
+    font-weight: 600;
+    margin-top: 2em;
+    margin-bottom: 5em;
+  }
+
+  .buttons_register_login button.active {
+    background-color: var(--first-color);
+    color: white;
+  }
+
+  .buttons_register_login button:hover {
+    background-color: #dac4f8;
+  }
+
+  .login_pro {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .login_pro_info {
+    width: 50%;
+  }
+
+  .register_pro {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .login_pro_image {
+    width: 700px;
+    height: 700px;
+  }
+  .login_register_image {
+    width: 500px;
+  }
+  .login_pro_info h1 {
+    margin-top: -1em;
+    font-size: 4em;
+  }
+  .login_pro_info h2 {
+    font-size: 3em;
+  }
+  .login_pro_info h3 {
+    font-size: 1.5em;
+  }
+  .input_login_pro input {
+    font-size: 1.3em;
+  }
+  .login_pro_info button {
+    font-size: 1em;
+  }
+  .login_pro_info img {
+    font-size: 1.5em;
+  }
+  .login_admin {
+    display: flex;
+    position: absolute;
+    color: var(--second-color);
+    background-color: var(--second-color);
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    right: 2%;
+    top: 2%;
+    cursor: default;
+  }
+
+  .login_admin img {
+    width: 30px;
+  }
+  .register_message {
+    width: 60%;
+  }
+  .popup_admin {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .popup_inner_admin {
+    position: relative;
+    padding: 2em;
+    width: 30%;
+    background: white;
+    border-radius: 1em;
+  }
+
+  .close_button_admin {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}
