@@ -92,14 +92,30 @@ CREATE TABLE booking_operation (
   nursery_id int DEFAULT NULL,
   parent_id int DEFAULT NULL,
   child_id int DEFAULT NULL,
-  moderator_id int DEFAULT NULL,
   PRIMARY KEY (booking_operation_id),
   KEY nursery_id (nursery_id),
   KEY parent_id (parent_id),
-  KEY moderator_id (moderator_id),
   CONSTRAINT booking_operation_ibfk_1 FOREIGN KEY (nursery_id) REFERENCES nursery (nursery_id),
-  CONSTRAINT booking_operation_ibfk_2 FOREIGN KEY (parent_id) REFERENCES parent (parent_id),
-  CONSTRAINT booking_operation_ibfk_3 FOREIGN KEY (moderator_id) REFERENCES moderator (moderator_id)
+  CONSTRAINT booking_operation_ibfk_2 FOREIGN KEY (parent_id) REFERENCES parent (parent_id)
+);
+
+CREATE TABLE moderation_operation (
+  moderation_operation_id int NOT NULL AUTO_INCREMENT,
+  moderation_operation_date datetime NOT NULL,
+  PRIMARY KEY (moderation_operation_id),
+  moderation_action varchar(50) DEFAULT 'delete',
+  nursery_id int DEFAULT NULL,
+  parent_id int DEFAULT NULL,
+  booking_operation_id int DEFAULT NULL,
+  moderator_id int DEFAULT NULL,
+  KEY nursery_id (nursery_id),
+  KEY booking_operation_id (booking_operation_id),
+  KEY parent_id (parent_id),
+  KEY moderator_id (moderator_id),
+  CONSTRAINT moderation_operation_ibfk_1 FOREIGN KEY (nursery_id) REFERENCES nursery (nursery_id),
+  CONSTRAINT moderation_operation_ibfk_2 FOREIGN KEY (parent_id) REFERENCES parent (parent_id),
+  CONSTRAINT moderation_operation_ibfk_3 FOREIGN KEY (moderator_id) REFERENCES moderator (moderator_id),
+  CONSTRAINT moderation_operation_ibfk_4 FOREIGN KEY (booking_operation_id) REFERENCES booking_operation (booking_operation_id)
 );
 
 

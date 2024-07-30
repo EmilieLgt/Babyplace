@@ -69,6 +69,13 @@ class NurseryRepository extends AbstractRepository {
 
     return nurseries;
   }
+  /* async readInfo () {
+
+    const [nurseryRows] = await this.database.query(
+      `SELECT * FROM ${this.table}`
+    );
+  }
+ */
 
   async fetchBookingsForNursery(nurseryId) {
     const [bookingRows] = await this.database.query(

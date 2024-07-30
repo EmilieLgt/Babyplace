@@ -22,7 +22,6 @@ class BookingOperationSeeder extends AbstractSeeder {
         state: "Passée",
         parent_id: this.getRef("parent_celine.lelouche@gmail.com").insertId,
         child_id: this.getRef("child_Martin").insertId,
-        moderator_id: null,
         nursery_id: this.getRef("nursery_contact@lillomomes.fr").insertId,
       },
 
@@ -32,7 +31,6 @@ class BookingOperationSeeder extends AbstractSeeder {
         state: "Passée",
         parent_id: this.getRef("parent_celine.lelouche@gmail.com").insertId,
         child_id: this.getRef("child_Martin").insertId,
-        moderator_id: null,
         nursery_id: this.getRef("nursery_contact@lillomomes.fr").insertId,
       },
 
@@ -42,7 +40,6 @@ class BookingOperationSeeder extends AbstractSeeder {
         state: "En attente",
         parent_id: this.getRef("parent_celine.lelouche@gmail.com").insertId,
         child_id: this.getRef("child_Martin").insertId,
-        moderator_id: null,
         nursery_id: this.getRef("nursery_contact@lillomomes.fr").insertId,
       },
 
@@ -52,7 +49,6 @@ class BookingOperationSeeder extends AbstractSeeder {
         state: "En attente",
         parent_id: this.getRef("parent_celine.lelouche@gmail.com").insertId,
         child_id: this.getRef("child_Zoé").insertId,
-        moderator_id: null,
         nursery_id: this.getRef("nursery_contact@lillomomes.fr").insertId,
       },
 
@@ -62,7 +58,6 @@ class BookingOperationSeeder extends AbstractSeeder {
         state: "Passée",
         parent_id: this.getRef("parent_celine.lelouche@gmail.com").insertId,
         child_id: this.getRef("child_Martin").insertId,
-        moderator_id: null,
         nursery_id: this.getRef("nursery_hello@tambourin-et-castagnettes.com")
           .insertId,
       },
@@ -73,7 +68,6 @@ class BookingOperationSeeder extends AbstractSeeder {
         state: "En attente",
         parent_id: this.getRef("parent_celine.lelouche@gmail.com").insertId,
         child_id: this.getRef("child_Martin").insertId,
-        moderator_id: null,
         nursery_id: this.getRef("nursery_hello@tambourin-et-castagnettes.com")
           .insertId,
       },
@@ -185,7 +179,6 @@ class BookingOperationSeeder extends AbstractSeeder {
         state: "A venir",
         parent_id: this.getRef("parent_georges.st-pierre@gmail.com").insertId,
         child_id: this.getRef("child_Benoit").insertId,
-        moderator_id: null,
         nursery_id: this.getRef("nursery_hello@tambourin-et-castagnettes.com")
           .insertId,
       },
@@ -195,7 +188,6 @@ class BookingOperationSeeder extends AbstractSeeder {
         state: "A venir",
         parent_id: this.getRef("parent_georges.st-pierre@gmail.com").insertId,
         child_id: this.getRef("child_Benoit").insertId,
-        moderator_id: null,
         nursery_id: this.getRef("nursery_hello@tambourin-et-castagnettes.com")
           .insertId,
       },
@@ -205,7 +197,6 @@ class BookingOperationSeeder extends AbstractSeeder {
         state: "Passée",
         parent_id: this.getRef("parent_celine.lelouche@gmail.com").insertId,
         child_id: this.getRef("child_Zoé").insertId,
-        moderator_id: null,
         nursery_id: this.getRef("nursery_hello@tambourin-et-castagnettes.com")
           .insertId,
       },
@@ -215,7 +206,6 @@ class BookingOperationSeeder extends AbstractSeeder {
         state: "A venir",
         parent_id: this.getRef("parent_celine.lelouche@gmail.com").insertId,
         child_id: this.getRef("child_Martin").insertId,
-        moderator_id: null,
         nursery_id: this.getRef("nursery_hello@harmonie.com").insertId,
       },
       {
@@ -224,7 +214,6 @@ class BookingOperationSeeder extends AbstractSeeder {
         state: "Passée",
         parent_id: this.getRef("parent_celine.lelouche@gmail.com").insertId,
         child_id: this.getRef("child_Martin").insertId,
-        moderator_id: null,
         nursery_id: this.getRef("nursery_hello@tilleul.com").insertId,
       },
     ];

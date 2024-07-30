@@ -1,5 +1,4 @@
 const multer = require("multer");
-
 const path = require("path");
 
 const MIME_TYPES = {
@@ -8,7 +7,7 @@ const MIME_TYPES = {
   "image/png": "png",
 };
 
-// Configure multer storage
+// configure multer storage
 const storage = multer.diskStorage({
   destination(req, file, cb) {
     const uploadPath = path.resolve(
@@ -23,7 +22,17 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage }).single("file");
+// configure file type
+const upload = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+    if (MIME_TYPES[file.mimetype]) {
+      cb(null, true);
+    } else {
+      cb(new Error("Type de fichier non autorisé"), false);
+    }
+  },
+}).single("file");
 
 const addImages = async (req, res, next) => {
   upload(req, res, (err) => {

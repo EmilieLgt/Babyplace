@@ -83,6 +83,7 @@ function DashboardPro() {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${user.token}`,
           },
           body: JSON.stringify(body),
         }

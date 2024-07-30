@@ -6,21 +6,34 @@ import NurseriesMini from "./NurseriesMini";
 import "./nurseriesAll.css";
 
 function NurseriesAllLille() {
-  // on reçoit les données triées par ville (depuis loader main)
   const allNurseries = useLoaderData();
+
+  // gère vue mobile
+  const [viewList, setViewList] = useState(true);
+  const handleViewList = () => {
+    setViewList(true);
+  };
+
+  const handleViewMap = () => {
+    setViewList(false);
+  };
 
   // gère le filtre par date
   const [datePicked, setDatePicked] = useState();
-
   const filterNurseries = allNurseries.filter((nursery) => {
+    // si aucune date n'est sélectionnée, retourne toutes les crèches
     if (!datePicked) return true;
-
     return nursery.bookings.some((booking) => {
-      // pour gérer le décalage horaire (base de données sur un fuseau horaire différent (UTC) de l'input qui est sur notre fuseau horaire)
-      // convertie en format Date notre date de la bdd (de format YYYY-MM-DDThh-mm-ssZ à "Sat Aug 10 2024 00:00:00 GMT+0200 (heure d’été d’Europe centrale)"")
+      // Gestion du décalage horaire (json sur un fuseau horaire différent
+      // (UTC - 2h) de l'input qui est sur notre fuseau horaire)
+      // convertie en format Date notre date de la bdd (de format YYYY-MM-DDThh-mm-ssZ à
+      // "Sat Aug 10 2024 00:00:00 GMT+0200 (heure d’été d’Europe centrale)"")
       const bookingDate = new Date(booking.booking_operation_date);
-      // convertie en formart YYYY-MM-DD pour pouvoir comparer avec input sous ce format et conserver le jour sans décalage horaire
-      // le Date.UTC (Temps Universel Coordonné), vient formater notre date de la bdd pour s'assurer qu'on reçoit un bon format de date, puis ajoute un jour pour combler le décalage horaire
+      // convertie en formart YYYY-MM-DD pour pouvoir comparer avec l'input sous ce format
+      // et conserver le jour sans décalage horaire
+      // le Date.UTC (Temps Universel Coordonné), vient formater notre date de la bdd
+      // pour s'assurer qu'on reçoit un bon format de date,
+      // puis ajoute un jour pour combler le décalage horaire
       const bookingDateString = new Date(
         Date.UTC(
           bookingDate.getUTCFullYear(),
@@ -28,10 +41,12 @@ function NurseriesAllLille() {
           bookingDate.getUTCDate() + 1
         )
       )
-        // re-convertie en format YYYY-MM-DD avec .toISOString sans les heures (split), pour avoir une valeur comparable à celle comme de l'input.
+        // re-convertie en format YYYY-MM-DD avec .toISOString sans
+        // les heures (split), pour avoir une valeur comparable à celle comme de l'input.
         .toISOString()
         .split("T")[0];
-      // on souhaite récupérer les réservations qui ont la même date que l'input avec un créneau libre
+      // on souhaite récupérer les réservations qui ont la même date que
+      // l'input, avec un créneau libre
       return bookingDateString === datePicked && booking.state === "Libre";
     });
   });
@@ -46,16 +61,6 @@ function NurseriesAllLille() {
       )
     );
     setDatePicked(utcDate.toISOString().split("T")[0]);
-  };
-
-  // gère l'affichage mobile (carte ou liste )
-  const [viewList, setViewList] = useState(true);
-  const handleViewList = () => {
-    setViewList(true);
-  };
-
-  const handleViewMap = () => {
-    setViewList(false);
   };
 
   return (
