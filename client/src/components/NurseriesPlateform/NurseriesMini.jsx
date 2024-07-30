@@ -7,15 +7,12 @@ function NurseriesMini({ id, name, image1, price, bookings }) {
   return (
     <div className="nursery_list_card">
       <h3 className="nursery_list_title">{name}</h3>
-      <img className="nursery_list_img" src={image1} alt="img nursery" />
+      <img className="nursery_list_img" src={image1} alt="{name}" />
       <div className="nursery_list_desc">
         <p className="nursery_list_price">Tarif : {price} € /h</p>
         <NurseriesCardCalender bookings={bookings} />
-        <Link to={`/creche/${id}`}>
-          {" "}
-          <button type="button" className="nursery_list_button">
-            Découvrir &gt;
-          </button>{" "}
+        <Link to={`/creche/${id}`} className="nursery_list_button">
+          Découvrir &gt;
         </Link>
       </div>
     </div>

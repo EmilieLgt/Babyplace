@@ -426,11 +426,10 @@ function Dashboard() {
           <br />
           Propre : {selectedChild.clean_status ? "Oui" : "Non"}
           <br />
-          Allergies :
-          {selectedChild.allergies ? (
-            formatAllergies(selectedChild.allergies)
+          {selectedChild.allergies !== null ? (
+            <p>Allergies :{formatAllergies(selectedChild.allergies)}</p>
           ) : (
-            <div>aucune </div>
+            "aucune"
           )}
           <p className="modify_info">Modifier</p>
         </div>

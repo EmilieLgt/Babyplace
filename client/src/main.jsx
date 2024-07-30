@@ -50,14 +50,6 @@ const router = createBrowserRouter([
           const response = await myAxios.get("/api/nursery?city=Lille");
           return response.data;
         },
-        action: async ({ request }) => {
-          const formData = await request.formData();
-          const nurseryId = formData.get("nursery_id");
-          const response = await myAxios.post("/api/nursery?city=Lille", {
-            nurseryId,
-          });
-          return redirect(`/nursery/${response.data.insertId}`);
-        },
       },
       {
         path: "/creche/rennes",
@@ -65,14 +57,6 @@ const router = createBrowserRouter([
         loader: async () => {
           const response = await myAxios.get("/api/nursery?city=Rennes");
           return response.data;
-        },
-        action: async ({ request }) => {
-          const formData = await request.formData();
-          const nurseryId = formData.get("nursery_id");
-          const response = await myAxios.post("/api/nursery?city=Rennes", {
-            nurseryId,
-          });
-          return redirect(`/nursery/${response.data.insertId}`);
         },
       },
       {

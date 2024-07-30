@@ -34,6 +34,10 @@ const nurseryRouter = require("./nursery/router");
 
 router.use("/nursery", nurseryRouter);
 
+const moderationRouter = require("./moderation-operation/router");
+
+router.use("/moderation", moderationRouter);
+
 /* ************************************************************************* */
 
 module.exports = router;

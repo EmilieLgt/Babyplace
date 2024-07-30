@@ -5,6 +5,7 @@ const ChildRepository = require("./models/ChildRepository");
 const AllergyRepository = require("./models/AllergyRepository");
 const BookingOperationRepository = require("./models/BookingOperationRepository");
 const NurseryRepository = require("./models/NurseryRepository");
+const ModerationRepository = require("./models/ModerationRepository");
 // Create an empty object to hold data repositories for different tables
 const tables = {};
 
@@ -19,6 +20,7 @@ tables.child = new ChildRepository();
 tables.allergy = new AllergyRepository();
 tables.booking_operation = new BookingOperationRepository();
 tables.nursery = new NurseryRepository();
+tables.moderation_operation = new ModerationRepository();
 /* ************************************************************************* */
 
 // Use a Proxy to customize error messages when trying to access a non-existing table

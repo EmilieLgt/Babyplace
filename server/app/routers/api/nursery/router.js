@@ -13,7 +13,7 @@ const {
   editContact,
   add,
   destroy,
- } = require("../../../controllers/nuseryActions");
+} = require("../../../controllers/nuseryActions");
 
 // Route to get a list of nurseries
 router.get("/", browse);
@@ -23,8 +23,9 @@ router.get("/:id", read);
 
 const hashPassword = require("../../../services/HashedPassword");
 
+const authenticateToken = require("../../../services/Token");
 // Route to edit a nursery
-router.put("/edit/:id", editContact);
+router.put("/edit/:id", authenticateToken, editContact);
 
 // Route to add a new nursery
 router.post("/", hashPassword, add);

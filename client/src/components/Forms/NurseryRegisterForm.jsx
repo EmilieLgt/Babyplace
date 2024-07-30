@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import "leaflet/dist/leaflet.css";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import "./nurseryRegister.css";
@@ -92,9 +92,6 @@ export default function NurseryRegisterForm() {
   const [capacityInput, setCapacityInput] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState(null);
   const [priceInput, setPrice] = useState(null);
-  const [image1, setImage1] = useState(null);
-  const [image2, setImage2] = useState(null);
-  const [image3, setImage3] = useState(null);
   const [aboutInput, setAboutInput] = useState(null);
 
   const [missingEmail, setMissingEmail] = useState(false);
@@ -102,9 +99,6 @@ export default function NurseryRegisterForm() {
   const [missingCapacityInput, setMissingCapacityInput] = useState(false);
   const [missingPhoneNumber, setMissingPhoneNumber] = useState(false);
   const [missingPriceInput, setMissingPriceInput] = useState(false);
-  const [missingImage1, setMissingImage1] = useState(false);
-  const [missingImage2, setMissingImage2] = useState(false);
-  const [missingImage3, setMissingImage3] = useState(false);
   const [missingAboutInput, setMissingAboutInput] = useState(false);
 
   const handleEmailChange = (e) => setEmail(e.target.value);
@@ -112,12 +106,24 @@ export default function NurseryRegisterForm() {
   const handleCapacityChange = (e) => setCapacityInput(e.target.value);
   const handlePhoneNumberChange = (e) => setPhoneNumber(e.target.value);
   const handlePriceChange = (e) => setPrice(e.target.value);
-  const handleImage1Change = (e) => setImage1(e.target.value);
-  const handleImage2Change = (e) => setImage2(e.target.value);
-  const handleImage3Change = (e) => setImage3(e.target.value);
   const handleAboutChange = (e) => setAboutInput(e.target.value);
 
+  // gérer la vérificiation du mot de passe
+  const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+  const [goodPassword, setGoodPassword] = useState(false);
+  const [btnState, setBtnState] = useState(true);
+
+  useEffect(() => {
+    const regexPasswordTest = regexPassword.test(password);
+    setGoodPassword(!regexPasswordTest);
+    setBtnState(!regexPasswordTest);
+  }, [password]);
+
   const [missingFields, setMissingFields] = useState(false);
+
+  const image1Ref = useRef();
+  const image2Ref = useRef();
+  const image3Ref = useRef();
 
   // fonction pour upload les images et les envoyer en back
   const handleUpload = async (image) => {
@@ -172,24 +178,6 @@ export default function NurseryRegisterForm() {
       setMissingPriceInput(false);
     }
 
-    if (image1 === null) {
-      setMissingImage1(true);
-    } else {
-      setMissingImage1(false);
-    }
-
-    if (image2 === null) {
-      setMissingImage2(true);
-    } else {
-      setMissingImage2(false);
-    }
-
-    if (image3 === null) {
-      setMissingImage3(true);
-    } else {
-      setMissingImage3(false);
-    }
-
     if (aboutInput === null) {
       setMissingAboutInput(true);
     } else {
@@ -201,16 +189,13 @@ export default function NurseryRegisterForm() {
       capacityInput === null ||
       phoneNumber === null ||
       priceInput === null ||
-      image1 === null ||
-      image2 === null ||
-      image3 === null ||
       aboutInput === null
     ) {
       setMissingFields(true);
     }
-    const image1File = image1;
-    const image2File = image2;
-    const image3File = image3;
+    const image1File = image1Ref.current.files[0];
+    const image2File = image2Ref.current.files[0];
+    const image3File = image3Ref.current.files[0];
 
     const addressExists = data.some(
       (address) =>
@@ -413,6 +398,14 @@ export default function NurseryRegisterForm() {
                 onChange={handlePasswordChange}
               />
             </label>
+            {goodPassword ? (
+              <div>
+                Votre mot de passe doit comporter au moins 8 caractères, une
+                majuscule, un chiffre et un caractère spécial
+              </div>
+            ) : (
+              <div />
+            )}
             <label htmlFor="nursery_password_confirmation_form">
               <div>Confirmez votre mot de passe *</div>
               <input
@@ -537,34 +530,25 @@ export default function NurseryRegisterForm() {
               </h4>
               <div className="images_input_container">
                 <div>
-                  <span className={missingImage1 ? "red_text" : "normal_text"}>
-                    Image 1 * :
-                  </span>{" "}
+                  <span className="normal_text">Image 1 * :</span>{" "}
                   <input
-                    value={image1}
-                    onChange={handleImage1Change}
+                    ref={image1Ref}
                     type="file"
                     className="image_input_register"
                   />
                 </div>
                 <div>
-                  <span className={missingImage2 ? "red_text" : "normal_text"}>
-                    Image 2 * :{" "}
-                  </span>
+                  <span className="normal_text">Image 2 * : </span>
                   <input
-                    value={image2}
-                    onChange={handleImage2Change}
+                    ref={image2Ref}
                     type="file"
                     className="image_input_register"
                   />
                 </div>
                 <div>
-                  <span className={missingImage3 ? "red_text" : "normal_text"}>
-                    Image 3 * :{" "}
-                  </span>
+                  <span className="normal_text">Image 3 * : </span>
                   <input
-                    value={image3}
-                    onChange={handleImage3Change}
+                    ref={image3Ref}
                     type="file"
                     className="image_input_register"
                   />
@@ -582,6 +566,7 @@ export default function NurseryRegisterForm() {
               </div>
             )}
             <button
+              disabled={btnState}
               type="submit"
               className="validate_button_nursery_form"
               onClick={handleSubmit}
