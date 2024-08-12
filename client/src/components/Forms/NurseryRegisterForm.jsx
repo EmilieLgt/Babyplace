@@ -9,12 +9,22 @@ export default function NurseryRegisterForm() {
   const navigate = useNavigate();
 
   // charge la database des adresses (lille et rennes)
-  const data = useLoaderData();
-  // gére la ville sélectionnée pour que ça parte chercher dans le bon json
+  const { lille: lilleData, rennes: rennesData } = useLoaderData();
+  const [data, setData] = useState([]);
+  // gére la ville sélectionnée pour chercher dans le bon json
   const [selectedCity, setSelectedCity] = useState("");
   const handleCityChange = (e) => {
     setSelectedCity(e.target.value);
   };
+
+  useEffect(() => {
+    if (selectedCity === "Lille") {
+      setData(lilleData);
+    } else if (selectedCity === "Rennes") {
+      setData(rennesData);
+    }
+  }, [selectedCity, lilleData, rennesData]);
+
   // gère l'adresse entrée par l'utilisateur
   const [streetNameInput, setStreetNameInput] = useState("");
   const [streetName, setStreetName] = useState("");
@@ -30,6 +40,7 @@ export default function NurseryRegisterForm() {
           address.voie_nom.toLowerCase().includes(streetNameInput.toLowerCase())
         )
       : [];
+
   // évite les doublons dans les résultats des rues
   const uniqueResults = filteredResults.reduce((acc, current) => {
     const x = acc.find((item) => item.voie_nom === current.voie_nom);
@@ -38,15 +49,6 @@ export default function NurseryRegisterForm() {
     }
     return acc;
   }, []);
-  //  recherche dans la base de données la tuple qui correspond exactement au nom de la rue/numéro sélectionnés par l'utilisateur
-  const adresseDefinitive =
-    streetName && streetNumber
-      ? data.filter(
-          (address) =>
-            address.voie_nom.toLowerCase() === streetName.toLowerCase() &&
-            parseInt(address.numero, 10) === parseInt(streetNumber, 10)
-        )
-      : [];
 
   // Gérer les messages d'erreur si le numéro de rue n'est pas valable
   const [addressError, setAddressError] = useState(null);
@@ -108,6 +110,8 @@ export default function NurseryRegisterForm() {
   const handlePriceChange = (e) => setPrice(e.target.value);
   const handleAboutChange = (e) => setAboutInput(e.target.value);
 
+  const [missingFields, setMissingFields] = useState(false);
+
   // gérer la vérificiation du mot de passe
   const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
   const [goodPassword, setGoodPassword] = useState(false);
@@ -118,8 +122,6 @@ export default function NurseryRegisterForm() {
     setGoodPassword(!regexPasswordTest);
     setBtnState(!regexPasswordTest);
   }, [password]);
-
-  const [missingFields, setMissingFields] = useState(false);
 
   const image1Ref = useRef();
   const image2Ref = useRef();
@@ -208,6 +210,11 @@ export default function NurseryRegisterForm() {
       return;
     }
 
+    const selectedAddress = data.find(
+      (address) =>
+        address.voie_nom.toLowerCase() === streetName.toLowerCase() &&
+        parseInt(address.numero, 10) === parseInt(streetNumber, 10)
+    );
     // Réinitialise l'erreur d'adresse si tout est correct
     setAddressError(null);
 
@@ -225,8 +232,8 @@ export default function NurseryRegisterForm() {
             nursery_street: streetName,
             role: "nursery",
             nursery_street_number: streetNumber,
-            latitude: adresseDefinitive[0].lat,
-            longitude: adresseDefinitive[0].longitude,
+            latitude: selectedAddress.lat,
+            longitude: selectedAddress.longitude,
             city: selectedCity,
             capacity: capacityInput,
             price: priceInput,
@@ -401,7 +408,7 @@ export default function NurseryRegisterForm() {
             {goodPassword ? (
               <div>
                 Votre mot de passe doit comporter au moins 8 caractères, une
-                majuscule, un chiffre et un caractère spécial
+                majuscule, <br /> un chiffre et un caractère spécial
               </div>
             ) : (
               <div />

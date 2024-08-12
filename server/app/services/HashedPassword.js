@@ -1,4 +1,6 @@
+/* eslint-disable consistent-return */
 /* eslint-disable camelcase */
+
 const argon2 = require("argon2");
 
 const hashingOptions = {
@@ -8,7 +10,6 @@ const hashingOptions = {
   parallelism: 1,
 };
 
-// eslint-disable-next-line consistent-return
 const hashPassword = async (req, res, next) => {
   try {
     const { parent_password, moderator_password, nursery_password } = req.body;

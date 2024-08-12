@@ -39,7 +39,7 @@ const login = async (req, res) => {
       });
     }
 
-    // Checking User password
+    // Checking User passworda
     const verified = await argon2.verify(info[passwordField], userPassword);
 
     if (!verified) {
