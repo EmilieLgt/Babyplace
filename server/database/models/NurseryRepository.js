@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const AbstractRepository = require("./AbstractRepository");
 
 class NurseryRepository extends AbstractRepository {
@@ -46,7 +47,29 @@ class NurseryRepository extends AbstractRepository {
   async readAll() {
     // Execute the SQL SELECT query to retrieve all nurseries from the "nursery" table
     const [nurseryRows] = await this.database.query(
-      `SELECT * FROM ${this.table}`
+      `SELECT 
+    nursery_id,
+    nursery_name,
+    nursery_street,
+    nursery_street_number,
+    latitude,
+    longitude,
+    city,
+    capacity,
+    price,
+    nursery_phone,
+    nursery_mail,
+    image1,
+    image2,
+    image3,
+    activity1,
+    activity2,
+    activity3,
+    certification1,
+    certification2,
+    certification3,
+    about 
+    FROM ${this.table}`
     );
 
     if (nurseryRows.length === 0) {
@@ -119,6 +142,7 @@ class NurseryRepository extends AbstractRepository {
         LEFT JOIN allergy al ON c.child_id = al.child_id
       WHERE 
         bo.nursery_id = ?
+      AND bo.state = "Libre"
       `,
       [nurseryId]
     );
@@ -424,13 +448,11 @@ class NurseryRepository extends AbstractRepository {
   }
 
   async updateContact(nursery) {
-    // eslint-disable-next-line camelcase
     const { nursery_id, capacity, price, nursery_phone, nursery_mail } =
       nursery;
     // Execute the SQL UPDATE query to update a nursery from the 'nursery' table
     const [rows] = await this.database.query(
       `update ${this.table} set capacity = ?, price = ?, nursery_phone = ?, nursery_mail = ? where nursery_id = ?`,
-      // eslint-disable-next-line camelcase
       [capacity, price, nursery_phone, nursery_mail, nursery_id]
     );
     return rows;

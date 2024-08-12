@@ -26,12 +26,16 @@ import DashboardComponent from "./pages/Dashboard/DashboardComponent";
 
 const getDataAddresses = async () => {
   try {
-    const response = await fetch("/addresses/lille-addresses.json");
-    const data = await response.json();
-    return data;
+    const [lilleResponse, rennesResponse] = await Promise.all([
+      fetch("/addresses/lille-addresses.json"),
+      fetch("/addresses/rennes-addresses.json"),
+    ]);
+    const lilleData = await lilleResponse.json();
+    const rennesData = await rennesResponse.json();
+    return { lille: lilleData, rennes: rennesData };
   } catch (error) {
     console.error("Error fetching data: ", error);
-    return [];
+    return { lille: [], rennes: [] };
   }
 };
 
