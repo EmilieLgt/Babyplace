@@ -31,32 +31,6 @@ CREATE TABLE child (
   CONSTRAINT child_ibfk_1 FOREIGN KEY (parent_id) REFERENCES parent (parent_id) ON DELETE CASCADE
 );
 
-
-
-CREATE TABLE allergy (
-  allergy_id int NOT NULL AUTO_INCREMENT,
-  gluten tinyint(1) DEFAULT NULL,
-  fruitsacoque tinyint(1) DEFAULT NULL,
-  crustaces tinyint(1) DEFAULT NULL,
-  celeri tinyint(1) DEFAULT NULL,
-  oeufs tinyint(1) DEFAULT NULL,
-  moutarde tinyint(1) DEFAULT NULL,
-  poissons tinyint(1) DEFAULT NULL,
-  soja tinyint(1) DEFAULT NULL,
-  lait tinyint(1) DEFAULT NULL,
-  sulfites tinyint(1) DEFAULT NULL,
-  sesame tinyint(1) DEFAULT NULL,
-  lupin tinyint(1) DEFAULT NULL,
-  arachides tinyint(1) DEFAULT NULL,
-  mollusques tinyint(1) DEFAULT NULL,
-  autres varchar(255) DEFAULT NULL,
-  child_id int DEFAULT NULL,
-  PRIMARY KEY (allergy_id),
-  KEY fk_child (child_id),
-  CONSTRAINT allergy_ibfk_1 FOREIGN KEY (child_id) REFERENCES child (child_id) ON DELETE CASCADE
-);
-
-
 CREATE TABLE nursery (
   nursery_id int NOT NULL AUTO_INCREMENT,
   role  varchar(50) DEFAULT 'nursery',
@@ -117,6 +91,31 @@ CREATE TABLE moderation_operation (
   CONSTRAINT moderation_operation_ibfk_3 FOREIGN KEY (moderator_id) REFERENCES moderator (moderator_id),
   CONSTRAINT moderation_operation_ibfk_4 FOREIGN KEY (booking_operation_id) REFERENCES booking_operation (booking_operation_id)
 );
+
+CREATE TABLE allergy (
+  allergy_id int NOT NULL AUTO_INCREMENT,
+  gluten tinyint(1) DEFAULT NULL,
+  fruitsacoque tinyint(1) DEFAULT NULL,
+  crustaces tinyint(1) DEFAULT NULL,
+  celeri tinyint(1) DEFAULT NULL,
+  oeufs tinyint(1) DEFAULT NULL,
+  moutarde tinyint(1) DEFAULT NULL,
+  poissons tinyint(1) DEFAULT NULL,
+  soja tinyint(1) DEFAULT NULL,
+  lait tinyint(1) DEFAULT NULL,
+  sulfites tinyint(1) DEFAULT NULL,
+  sesame tinyint(1) DEFAULT NULL,
+  lupin tinyint(1) DEFAULT NULL,
+  arachides tinyint(1) DEFAULT NULL,
+  mollusques tinyint(1) DEFAULT NULL,
+  autres varchar(255) DEFAULT NULL,
+  child_id int DEFAULT NULL,
+  PRIMARY KEY (allergy_id),
+  KEY fk_child (child_id),
+  CONSTRAINT allergy_ibfk_1 FOREIGN KEY (child_id) REFERENCES child (child_id) ON DELETE CASCADE
+);
+
+
 
 
 -- INSERT INTO moderator (moderator_mail, moderator_password) VALUES ('moderator1@example.com', 'password123'), ('moderator2@example.com', 'password456'), ('moderator3@example.com', 'password789');

@@ -53,6 +53,9 @@ function Nursery() {
                 Horaires : Lundi - Samedi : 9h-16h <br />
                 Téléphone : {data.nursery_phone} <br />
                 Mail : {data.nursery_mail}
+                <br />
+                Adresse : {data.nursery_street_number} {data.nursery_street}{" "}
+                {data.city}
               </section>
 
               <div className="function_map">

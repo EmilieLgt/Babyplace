@@ -54,8 +54,8 @@ const readByEmail = async (req, res, next) => {
     next(err);
   }
 };
-// The E of BREAD - Edit (Update) operation
 
+// The E of BREAD - Edit (Update) operation
 const editContact = async (req, res, next) => {
   try {
     const updatedNursery = req.body;
@@ -65,7 +65,6 @@ const editContact = async (req, res, next) => {
     next(err);
   }
 };
-// This operation is not yet implemented
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
   // Extract the nursery data from the request body
@@ -81,24 +80,18 @@ const add = async (req, res, next) => {
   }
 };
 // The D of BREAD - Destroy (Delete) operation
-
 const destroy = async (req, res, next) => {
   try {
     const { id } = req.params;
-
     const result = await tables.nursery.delete(id);
-
     if (result.affectedRows === 0) {
       res.status(404).json({ message: "Nursery not found" });
     }
-
     res.status(200).json({ message: "Nursery deleted successfully" });
   } catch (err) {
     next(err);
   }
 };
-
-// This operation is not yet implemented
 // Ready to export the controller functions
 module.exports = {
   browse,

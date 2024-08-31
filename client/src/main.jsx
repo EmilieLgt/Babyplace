@@ -1,9 +1,5 @@
 import ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  redirect,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import myAxios from "./services/myAxios";
 
 import App from "./App";
@@ -92,48 +88,7 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <DashboardComponent />,
-        loader: async () => {
-          const [parentsResponse, nurseryResponse, bookingResponse] =
-            await Promise.all([
-              myAxios.get("/api/parent"),
-              myAxios.get("/api/nursery"),
-              myAxios.get("/api/booking-operation"),
-            ]);
-
-          return {
-            parents: parentsResponse.data,
-            nurseries: nurseryResponse.data,
-            booking: bookingResponse.data,
-          };
-        },
-        action: async ({ request }) => {
-          const formData = await request.formData();
-
-          if (formData.has("parent_id")) {
-            const parentId = formData.get("parent_id");
-            const response = await myAxios.post("/api/parent", {
-              parentId,
-            });
-            return redirect(`/parent/${response.data.insertId}`);
-          }
-
-          if (formData.has("nursery_id")) {
-            const nurseryId = formData.get("nursery_id");
-            const response = await myAxios.post("/api/nursery", {
-              nurseryId,
-            });
-            return redirect(`/nursery/${response.data.insertId}`);
-          }
-          if (formData.has("booking_operation_id")) {
-            const bookingId = formData.get("booking_operation_id");
-            const response = await myAxios.post("/api/booking-operation", {
-              bookingId,
-            });
-            return redirect(`/booking-operation/${response.data.insertId}`);
-          }
-
-          return null;
-        },
+        // Supprimez le loader et l'action ici
       },
       { path: "/contact", element: <ContactPage /> },
     ],
