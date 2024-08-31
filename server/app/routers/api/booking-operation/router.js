@@ -6,7 +6,6 @@ const router = express.Router();
 // Define Your API Routes Here
 /* ************************************************************************* */
 
-// Import allergy-related actions
 const {
   browse,
   read,
@@ -29,8 +28,7 @@ router.put("/:id/edit", editBooking);
 // Route to add a new booking
 router.post("/", add);
 
-// Route to delete a booking
-
+// Route to delete a bookingo
 router.delete("/:id", destroy);
 
 /* ************************************************************************* */
