@@ -115,12 +115,10 @@ export default function NurseryRegisterForm() {
   // gérer la vérificiation du mot de passe
   const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
   const [goodPassword, setGoodPassword] = useState(false);
-  const [btnState, setBtnState] = useState(true);
 
   useEffect(() => {
     const regexPasswordTest = regexPassword.test(password);
     setGoodPassword(!regexPasswordTest);
-    setBtnState(!regexPasswordTest);
   }, [password]);
 
   const image1Ref = useRef();
@@ -148,8 +146,7 @@ export default function NurseryRegisterForm() {
   };
 
   // fonction pour envoyer les données du formulaire crèche vers le back, créer une nouvelle crèche dans notre db (après avoir récupéré les images)
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  async function handleSubmit() {
     if (email.length < 1) {
       setMissingEmail(true);
     } else {
@@ -204,7 +201,6 @@ export default function NurseryRegisterForm() {
         address.voie_nom.toLowerCase() === streetName.toLowerCase() &&
         parseInt(address.numero, 10) === parseInt(streetNumber, 10)
     );
-
     if (!addressExists) {
       setAddressError("Le numéro de rue entré n'est pas valide.");
       return;
@@ -269,14 +265,14 @@ export default function NurseryRegisterForm() {
       console.error(err);
       setAddressError("Une erreur s'est produite lors de l'inscription.");
     }
-  };
+  }
 
   return (
     <>
       <h2 className="nursery_title_form ">Inscription</h2>
       <div className="form_nursery_page">
         <section className="nursery_form_P1">
-          <form method="post" onSubmit={handleSubmit}>
+          <form method="post">
             <label
               htmlFor="nursery_name_form"
               className="nursery_subtitles_form"
@@ -406,7 +402,7 @@ export default function NurseryRegisterForm() {
               />
             </label>
             {goodPassword ? (
-              <div>
+              <div className="password_text">
                 Votre mot de passe doit comporter au moins 8 caractères, une
                 majuscule, <br /> un chiffre et un caractère spécial
               </div>
@@ -573,8 +569,7 @@ export default function NurseryRegisterForm() {
               </div>
             )}
             <button
-              disabled={btnState}
-              type="submit"
+              type="button"
               className="validate_button_nursery_form"
               onClick={handleSubmit}
             >
