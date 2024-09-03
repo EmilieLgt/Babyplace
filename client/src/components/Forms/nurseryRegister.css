@@ -70,6 +70,9 @@
   color: red;
   font-weight: bold;
 }
+.password_text {
+  color: red;
+}
 .input_nursery_form {
   width: 500px;
   padding: 0.5em;
